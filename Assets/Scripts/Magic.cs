@@ -5,8 +5,9 @@ using UnityEngine.Events;
 
 public class Magic : MonoBehaviour
 {
-    public MagicStage Stage = MagicStage.Preparing;
+    public MagicStage Stage = MagicStage.Prepare;
     public UnityEvent OnActivate;
+    public UnityEvent OnAppeared;
 
     private void OnEnable()
     {
@@ -23,14 +24,27 @@ public class Magic : MonoBehaviour
         OnActivate.Invoke();
     }
 
+    public void Appear()
+    {
+        OnAppeared.Invoke();
+        this.Stage = MagicStage.Prepare;
+    }
+
     public void SetReady()
     {
         this.Stage = MagicStage.Ready;
+    }
+
+    public void Thrown()
+    {
+        this.Stage = MagicStage.Thrown;
     }
 }
 
 public enum MagicStage
 {
-    Preparing,
-    Ready
+    Appear,
+    Prepare,
+    Ready,
+    Thrown
 }

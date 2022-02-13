@@ -2,14 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
 public class AnimationBoolTrigger : MonoBehaviour
 {
     public string Parameter;
+    public Animator Animator;
+
+    private void Awake()
+    {
+        if (Animator == null)
+        {
+            Animator = GetComponent<Animator>();
+        }
+    }
 
     public bool Value
     {
-        get { return GetComponent<Animator>().GetBool(Parameter); }
-        set { GetComponent<Animator>().SetBool(Parameter, value); }
+        get {
+            if (Animator != null) return Animator.GetBool(Parameter);
+            else return false;
+        }
+        set { if (Animator != null) Animator.SetBool(Parameter, value); }
     }
 }

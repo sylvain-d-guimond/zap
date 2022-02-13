@@ -48,9 +48,16 @@ public class Throw : MonoBehaviour
             transform.SetParent(Room);
             _rigidbody.AddForce(velocity * ForceMultiplier);
 
-            MagicManager.Instance.Activate();
+            var magic = GetComponent<Magic>();
+            if (magic != null)
+            {
+                magic.Activate();
+                magic.Stage = MagicStage.Thrown;
+            }
+
 
             _ready = false;
+            MagicManager.Instance.Activate();
         }
     }
 

@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Parameter: Shown
+  Animator: {fileID: 0}
 --- !u!73398921 &3924874046697040746
 VFXRenderer:
   m_ObjectHideFlags: 0
@@ -169,7 +170,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3924874046697040744}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9920dbbc9305d7d48bf024b512c69dc8, type: 3}
   m_Name: 
@@ -267,6 +268,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  DebugMessage: Thrown
 --- !u!114 &3650018655231729648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,6 +296,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3413f9f422326489afff53e2f7aec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Stage: 0
+  OnActivate:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAppeared:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3512852622522061338}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &3924874047527231914
 GameObject:
   m_ObjectHideFlags: 0

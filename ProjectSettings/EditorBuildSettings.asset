@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartScene.unity
     guid: 31e25206974b5fa4481ddc156f5ffeaf
+  - enabled: 1
+    path: Assets/MRTK/SceneUnderstanding/Scenes/SceneUnderstandingExample.unity
+    guid: d42a352dc9a8c4d4990a924687759199
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: a0cad07c319a00b4f9d4424fd00d2886, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 6d1b295c2a78da947ac330f36f3c682b, type: 2}

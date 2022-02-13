@@ -44,6 +44,7 @@ public class Logger : Singleton<Logger>
 
     private void OnEnable()
     {
+        DontDestroyOnLoad(this);
         Application.logMessageReceived += Application_logMessageReceived;
     }
 
@@ -56,6 +57,11 @@ public class Logger : Singleton<Logger>
     {
         LogMessage(new string[] { condition, stackTrace }, false);
     } 
+
+    public void ToggleStackTrace()
+    {
+        showStackTrace = !showStackTrace;
+    }
 }
 
 [System.Serializable]

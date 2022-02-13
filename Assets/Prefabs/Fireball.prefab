@@ -89,6 +89,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  DebugMessage: Pre-throw ready
 --- !u!1001 &2714759282221070753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101,8 +102,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2083874324882604466, guid: 6b8688dec8301d142b8d83d16f1911fb, type: 3}
+      propertyPath: Stage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083874324882604466, guid: 6b8688dec8301d142b8d83d16f1911fb, type: 3}
       propertyPath: OnActivate.m_PersistentCalls.m_Calls.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083874324882604466, guid: 6b8688dec8301d142b8d83d16f1911fb, type: 3}
+      propertyPath: OnAppeared.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2083874324882604466, guid: 6b8688dec8301d142b8d83d16f1911fb, type: 3}
       propertyPath: OnActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Mode

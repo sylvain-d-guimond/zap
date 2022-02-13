@@ -44,6 +44,8 @@ public class FingerZap : MonoBehaviour
             if (Distance.Distance > TargetDistance)
             {
                 _effect.GetComponent<Transition>().Set(EndPosition);
+                var magic = _effect.GetComponent<Magic>();
+                magic.Appear();
                 _effect.localScale = TargetScale * Vector3.one;
                 _active = false;
                 Deactivate();

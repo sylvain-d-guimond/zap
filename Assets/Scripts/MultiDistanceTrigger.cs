@@ -4,7 +4,7 @@ using System.Security.Permissions;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MultiDistanceTrigger : MonoBehaviour
+public class MultiDistanceTrigger : MonoBehaviour, ICondition
 {
     public static MultiDistanceTrigger Instance;
 
@@ -15,10 +15,26 @@ public class MultiDistanceTrigger : MonoBehaviour
 
     public UnityEvent OnTrigger;
 
+    public string DebugText;
+
     private bool _init;
     private float _maxDistance;
+    private bool _met;
 
     public float MaxDistance { get => _maxDistance; }
+    public bool Met
+    {
+        get => _met;
+        set
+        {
+            if (_met != value)
+            {
+                _met = value;
+                OnConditionChanged.Invoke(value);
+            }
+        }
+    }
+    public ConditionEvent OnConditionChanged { get; set; } = new ConditionEvent();
 
     private void Start()
     {
@@ -46,9 +62,11 @@ public class MultiDistanceTrigger : MonoBehaviour
                         if (!Invert && (Targets[i].position - Targets[j].position).magnitude > MinInitDistance)
                         {
                             inited = true;
+                            Debug.Log($"Distance trigger initialized: {gameObject.name}");
                         } else if (Invert && (Targets[i].position - Targets[j].position).magnitude < MinInitDistance)
                         {
                             inited = true;
+                            Debug.Log($"Distance trigger initialized: {gameObject.name}");
                         }
                     }
                 }
@@ -82,7 +100,13 @@ public class MultiDistanceTrigger : MonoBehaviour
                 }
             }
 
-            if (triggered) OnTrigger.Invoke();
+            if (triggered)
+            {
+                Debug.Log($"Distance trigger {gameObject.name} called: {DebugText}");
+                OnTrigger.Invoke();
+                Met = true;
+            }
+            else { Met = false; }
         }
     }
 }

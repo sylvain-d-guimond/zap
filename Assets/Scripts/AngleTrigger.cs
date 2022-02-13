@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class AngleTrigger : MonoBehaviour
+public class AngleTrigger : MonoBehaviour, ICondition
 {
     public Handedness Hand;
     public Fingers Finger;
@@ -13,11 +13,29 @@ public class AngleTrigger : MonoBehaviour
     public bool Active;
     public bool DeactivateOnTrigger = true;
 
-    public UnityEvent OnTrigger;
+    public ConditionEvent OnTrigger;
 
     public string DebugMessage;
-
+    
     private HandManager _handMgr;
+
+    public bool Met
+    {
+        get => _met;
+        set
+        {
+            if (_met != value)
+            {
+                _met = value;
+                OnConditionChanged.Invoke(value);
+                Debug.Log($"Condition {gameObject.name} Finger {Finger} {Value}: {DebugMessage} is {value}");
+            }
+        }
+    }
+
+    public ConditionEvent OnConditionChanged { get; set; } = new ConditionEvent();
+
+    private bool _met;
 
     private void Start()
     {
@@ -42,35 +60,35 @@ public class AngleTrigger : MonoBehaviour
                 case Operator.LessThan:
                     if (angle < Value)
                     {
-                        Debug.Log($"AT {angle} < {Value}: {DebugMessage}");
-                        OnTrigger.Invoke();
-                        if (DeactivateOnTrigger) Active = false;
-                    }
+                        Call($"Finger {Finger} Angle {angle} < {Value}: {DebugMessage}");
+                    } 
+                    else { Met = false; }
                     break;
                 case Operator.Equals:
                     if (angle == Value)
                     {
-                        Debug.Log($"AT {angle} = {Value}: {DebugMessage}");
-                        OnTrigger.Invoke();
-                        if (DeactivateOnTrigger) Active = false;
+                        Call($"Finger {Finger} Angle {angle} = {Value}: {DebugMessage}");
                     }
+                    else { Met = false; }
                     break;
                 case Operator.MoreThan:
                     if (angle > Value)
                     {
-                        Debug.Log($"AT {angle} < {Value}: {DebugMessage}");
-                        OnTrigger.Invoke();
-                        if (DeactivateOnTrigger) Active = false;
+                        Call($"Finger {Finger} Angle {angle} < {Value}: {DebugMessage}");
                     }
+                    else { Met = false; }
                     break;
             }
         }
+        else { Met = false; }
     }
 
-    private void Invoke()
+    private void Call(string debugMessage = "")
     {
-        OnTrigger.Invoke();
-        Debug.Log($"AT: {DebugMessage}");
+        //if (debugMessage != string.Empty) Debug.Log(debugMessage);
+        OnTrigger.Invoke(true);
+        if (DeactivateOnTrigger) Active = false;
+        Met = true;
     }
 }
 

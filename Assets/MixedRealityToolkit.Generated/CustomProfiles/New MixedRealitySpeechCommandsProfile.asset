@@ -114,3 +114,31 @@ MonoBehaviour:
       id: 0
       description: None
       axisConstraint: 0
+  - localizationKey: 
+    keyword: Show Log
+    keyCode: 291
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Hide Log
+    keyCode: 292
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Clear scene
+    keyCode: 293
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Load scene
+    keyCode: 294
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0

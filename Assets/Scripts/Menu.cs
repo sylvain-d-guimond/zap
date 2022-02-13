@@ -19,6 +19,8 @@ public class Menu : MonoBehaviour
     public UnityEvent OnHide;
     public UnityEvent OnHideFinished;
 
+    public float Delay = 2f;
+
     public void Activate()
     {
         OnActivate.Invoke();
@@ -36,16 +38,30 @@ public class Menu : MonoBehaviour
 
     public void Show()
     {
+        Debug.Log($"Show {gameObject.name}");
         OnShow.Invoke();
+    }
+
+    public void DelayedHide()
+    {
+        StartCoroutine(CoDelay());
+    }
+
+    private IEnumerator CoDelay()
+    {
+        yield return new WaitForSeconds(Delay);
+        Hide();
     }
 
     public void Hide()
     {
+        Debug.Log($"Hide {gameObject.name}");
         OnHide.Invoke();
     }
 
     public void ShowFinished()
     {
+        Debug.Log($"Show {gameObject.name} finished");
         OnShowFinished.Invoke();
     }
 

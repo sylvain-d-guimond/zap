@@ -60,9 +60,9 @@ public class HandDebugPanel : MonoBehaviour
             LeftAngle.text = HandManager.Instance.FingerAngle(Handedness.Left, (Fingers)15).ToString();
             RightAngle.text = HandManager.Instance.FingerAngle(Handedness.Right, (Fingers)15).ToString();
         }
-        if (MultiDistanceTrigger.Instance != null) FingerDistance.text = MultiDistanceTrigger.Instance.MaxDistance.ToString();
-        if (AvgDistance.Instance != null) AvgDist.text = AvgDistance.Instance.Distance.ToString();
-        if (Rigidbody != null) MaxVelocityText.text = Rigidbody.velocity.ToString();
-        else MaxVelocityText.text = MaxVelocity.ToString();
+        //if (MultiDistanceTrigger.Instance != null) FingerDistance.text = MultiDistanceTrigger.Instance.MaxDistance.ToString();
+        //if (AvgDistance.Instance != null) AvgDist.text = AvgDistance.Instance.Distance.ToString();
+        //if (Rigidbody != null) MaxVelocityText.text = Rigidbody.velocity.ToString();
+        //else MaxVelocityText.text = MaxVelocity.ToString();
     }
 }

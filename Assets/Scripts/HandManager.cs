@@ -10,6 +10,8 @@ public class HandManager : MonoBehaviour
 {
     public static HandManager Instance;
 
+    public bool ExcludeMetacarpals = true;
+
     private IMixedRealityHandJointService _handJointService;
     private Dictionary<Handedness, Dictionary<TrackedHandJoint, Transform>> _joints = new Dictionary<Handedness, Dictionary<TrackedHandJoint, Transform>>();
 
@@ -49,7 +51,7 @@ public class HandManager : MonoBehaviour
 
         if ((finger & Fingers.Index) == Fingers.Index) {
             //Angle between metacarpal and proximal phalanges
-            angle += Vector3.Angle(_joints[hand][TrackedHandJoint.IndexKnuckle].position - _joints[hand][TrackedHandJoint.IndexMetacarpal].position,
+            if (!ExcludeMetacarpals) angle += Vector3.Angle(_joints[hand][TrackedHandJoint.IndexKnuckle].position - _joints[hand][TrackedHandJoint.IndexMetacarpal].position,
                 _joints[hand][TrackedHandJoint.IndexMiddleJoint].position - _joints[hand][TrackedHandJoint.IndexKnuckle].position);
             //Angle between proximal and intermediate phalanges
             angle += Vector3.Angle(_joints[hand][TrackedHandJoint.IndexMiddleJoint].position - _joints[hand][TrackedHandJoint.IndexKnuckle].position,
@@ -62,7 +64,7 @@ public class HandManager : MonoBehaviour
 
         if ((finger & Fingers.Middle) == Fingers.Middle) {
             //Angle between metacarpal and proximal phalanges
-            angle += Vector3.Angle(_joints[hand][TrackedHandJoint.MiddleKnuckle].position - _joints[hand][TrackedHandJoint.MiddleMetacarpal].position,
+            if (!ExcludeMetacarpals) angle += Vector3.Angle(_joints[hand][TrackedHandJoint.MiddleKnuckle].position - _joints[hand][TrackedHandJoint.MiddleMetacarpal].position,
                 _joints[hand][TrackedHandJoint.MiddleMiddleJoint].position - _joints[hand][TrackedHandJoint.MiddleKnuckle].position);
             //Angle between proximal and intermediate phalanges
             angle += Vector3.Angle(_joints[hand][TrackedHandJoint.MiddleMiddleJoint].position - _joints[hand][TrackedHandJoint.MiddleKnuckle].position,
@@ -75,7 +77,7 @@ public class HandManager : MonoBehaviour
 
         if ((finger &  Fingers.Ring) == Fingers.Ring) {
             //Angle between metacarpal and proximal phalanges
-            angle += Vector3.Angle(_joints[hand][TrackedHandJoint.RingKnuckle].position - _joints[hand][TrackedHandJoint.RingMetacarpal].position,
+            if (!ExcludeMetacarpals) angle += Vector3.Angle(_joints[hand][TrackedHandJoint.RingKnuckle].position - _joints[hand][TrackedHandJoint.RingMetacarpal].position,
                 _joints[hand][TrackedHandJoint.RingMiddleJoint].position - _joints[hand][TrackedHandJoint.RingKnuckle].position);
             //Angle between proximal and intermediate phalanges
             angle += Vector3.Angle(_joints[hand][TrackedHandJoint.RingMiddleJoint].position - _joints[hand][TrackedHandJoint.RingKnuckle].position,
@@ -88,7 +90,7 @@ public class HandManager : MonoBehaviour
 
         if ((finger & Fingers.Pinky) == Fingers.Pinky) {
             //Angle between metacarpal and proximal phalanges
-            angle += Vector3.Angle(_joints[hand][TrackedHandJoint.PinkyKnuckle].position - _joints[hand][TrackedHandJoint.PinkyMetacarpal].position,
+            if (!ExcludeMetacarpals) angle += Vector3.Angle(_joints[hand][TrackedHandJoint.PinkyKnuckle].position - _joints[hand][TrackedHandJoint.PinkyMetacarpal].position,
                 _joints[hand][TrackedHandJoint.PinkyMiddleJoint].position - _joints[hand][TrackedHandJoint.PinkyKnuckle].position);
             //Angle between proximal and intermediate phalanges
             angle += Vector3.Angle(_joints[hand][TrackedHandJoint.PinkyMiddleJoint].position - _joints[hand][TrackedHandJoint.PinkyKnuckle].position,

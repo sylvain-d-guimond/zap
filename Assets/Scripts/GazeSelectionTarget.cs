@@ -5,22 +5,51 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.VFX;
 
+[RequireComponent(typeof(EyeTrackingTarget))]
 public class GazeSelectionTarget : MonoBehaviour
 {
-    public VisualEffect FX;
     public EyeTrackingTarget EyeTracking;
-    public GazeSelectionIndicator Indicator;
+    public Animator Animator;
+    public string AnimationParameter;
     public UnityEvent OnTrigger;
+    public UnityEvent OnSelect;
+    public UnityEvent OnDeselect;
 
-    public int SpawnRate = 15;
-
-    public void Highlight()
+    private void Awake()
     {
-        FX.SetInt("SpawnRate", SpawnRate);
+        EyeTracking = GetComponent<EyeTrackingTarget>();
+        Animator = GetComponent<Animator>();
     }
 
-    public void StopHighlight()
+    public void Call()
     {
-        FX.SetInt("SpawnRate", 0);
+        OnTrigger.Invoke();
+    }
+
+    public void Select()
+    {
+        Debug.Log($"Select target {gameObject.name}");
+        OnSelect.Invoke();
+    }
+
+    public void Deselect()
+    {
+        OnDeselect.Invoke();
+    }
+
+    public void Open()
+    {
+        if (Animator != null)
+        {
+            Animator.SetBool(AnimationParameter, true);
+        }
+    }
+
+    public void Close ()
+    {
+        if (Animator != null)
+        {
+            Animator.SetBool(AnimationParameter, false);
+        }
     }
 }
