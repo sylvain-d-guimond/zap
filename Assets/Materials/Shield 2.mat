@@ -115,14 +115,14 @@ Material:
     - _AlphaClip: 0
     - _Blend: 0
     - _BlendOp: 0
-    - _BlendedClippingWidth: 1
+    - _BlendedClippingWidth: 2.63
     - _BorderLight: 1
     - _BorderLightOpaque: 1
-    - _BorderLightOpaqueAlpha: 0.645
+    - _BorderLightOpaqueAlpha: 0.763
     - _BorderLightReplacesAlbedo: 1
     - _BorderLightUsesHoverColor: 0
-    - _BorderMinValue: 0.321
-    - _BorderWidth: 0.111
+    - _BorderMinValue: 0.389
+    - _BorderWidth: 0.088
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -137,7 +137,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DirectionalLight: 1
     - _DstBlend: 10
-    - _EdgeSmoothingValue: 0.2
+    - _EdgeSmoothingValue: 0.171
     - _EnableChannelMap: 0
     - _EnableEmission: 1
     - _EnableHoverColorOverride: 1
@@ -153,7 +153,7 @@ Material:
     - _FadeBeginDistance: 0.85
     - _FadeCompleteDistance: 0.5
     - _FadeMinValue: 0
-    - _FluentLightIntensity: 0.837
+    - _FluentLightIntensity: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -214,7 +214,7 @@ Material:
     - _ClippingBorderColor: {r: 1, g: 0.19999996, b: 0, a: 1}
     - _Color: {r: 0, g: 0.17173958, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _EmissiveColor: {r: 0, g: 0.23003024, b: 0.9607843, a: 1}
+    - _EmissiveColor: {r: 0, g: 0.03424373, b: 0.9607843, a: 1}
     - _EnvironmentColorX: {r: 1, g: 0, b: 0, a: 1}
     - _EnvironmentColorY: {r: 0, g: 1, b: 0, a: 1}
     - _EnvironmentColorZ: {r: 0, g: 0, b: 1, a: 1}

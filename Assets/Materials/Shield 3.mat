@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shield 2
+  m_Name: Shield 3
   m_Shader: {fileID: 4800000, guid: 5bdea20278144b11916d77503ba1467a, type: 3}
   m_ShaderKeywords: _ALPHABLEND_ON _BORDER_LIGHT _BORDER_LIGHT_OPAQUE _BORDER_LIGHT_REPLACES_ALBEDO
     _DIRECTIONAL_LIGHT _DISABLE_ALBEDO_MAP _EMISSION _ENVIRONMENT_COLORING _HOVER_COLOR_OVERRIDE
@@ -118,11 +118,11 @@ Material:
     - _BlendedClippingWidth: 1
     - _BorderLight: 1
     - _BorderLightOpaque: 1
-    - _BorderLightOpaqueAlpha: 0.645
+    - _BorderLightOpaqueAlpha: 0.206
     - _BorderLightReplacesAlbedo: 1
     - _BorderLightUsesHoverColor: 0
-    - _BorderMinValue: 0.321
-    - _BorderWidth: 0.111
+    - _BorderMinValue: 0.118
+    - _BorderWidth: 0.06
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -153,7 +153,7 @@ Material:
     - _FadeBeginDistance: 0.85
     - _FadeCompleteDistance: 0.5
     - _FadeMinValue: 0
-    - _FluentLightIntensity: 0.837
+    - _FluentLightIntensity: 0.753
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -212,9 +212,9 @@ Material:
     - Color_: {r: 0, g: 15.078532, b: 63.999992, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _ClippingBorderColor: {r: 1, g: 0.19999996, b: 0, a: 1}
-    - _Color: {r: 0, g: 0.17173958, b: 1, a: 0}
+    - _Color: {r: 0, g: 1, b: 0.8901961, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _EmissiveColor: {r: 0, g: 0.23003024, b: 0.9607843, a: 1}
+    - _EmissiveColor: {r: 0, g: 0.96900606, b: 1, a: 1}
     - _EnvironmentColorX: {r: 1, g: 0, b: 0, a: 1}
     - _EnvironmentColorY: {r: 0, g: 1, b: 0, a: 1}
     - _EnvironmentColorZ: {r: 0, g: 0, b: 1, a: 1}

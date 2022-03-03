@@ -7,6 +7,7 @@ using Microsoft.MixedReality.Toolkit.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit.UI;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
 {
@@ -134,7 +135,10 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
             {
                 foreach (var quad in eventData.SpatialObject.Quads)
                 {
-                    quad.GameObject.GetComponent<Renderer>().material.color = ColorForSurfaceType(eventData.SpatialObject.SurfaceType);
+                    if (quad.Extents.magnitude > 1)
+                        quad.GameObject.GetComponent<Renderer>().material.color = Color.red;
+                    else
+                        quad.GameObject.GetComponent<Renderer>().material.color = ColorForSurfaceType(eventData.SpatialObject.SurfaceType);
                 }
 
             }

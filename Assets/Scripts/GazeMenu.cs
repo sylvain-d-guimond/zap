@@ -30,6 +30,8 @@ public class GazeMenu : MonoBehaviour
             Menu.OnShow.AddListener(target.Open);
             Menu.OnHide.AddListener(target.Close);
         }
+        Menu.OnShow.AddListener(() => SelectionIndicator.GetComponent<AnimationBoolTrigger>().Value = true);
+        Menu.OnHide.AddListener(() => SelectionIndicator.GetComponent<AnimationBoolTrigger>().Value = false);
     }
 
     private void Select(GazeSelectionTarget target)
