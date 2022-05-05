@@ -14,7 +14,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
     /// <summary>
     /// Demo class to show different ways of visualizing the space using scene understanding.
     /// </summary>
-    public class DemoSceneUnderstandingController : DemoSpatialMeshHandler, IMixedRealitySpatialAwarenessObservationHandler<SpatialAwarenessSceneObject>
+    public class PortalController : DemoSpatialMeshHandler, IMixedRealitySpatialAwarenessObservationHandler<SpatialAwarenessSceneObject>
     {
         #region Private Fields
 
@@ -54,6 +54,8 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
         private Interactable completelyInferred = null;
         [SerializeField]
         private Interactable backgroundToggle = null;
+        [SerializeField]
+        private Interactable instantiateToggle = null;
 
         #endregion Serialized Fields
 
@@ -117,7 +119,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
             {
                 observedSceneObjects.Add(eventData.SpatialObject.SurfaceType, new Dictionary<int, SpatialAwarenessSceneObject> { { eventData.Id, eventData.SpatialObject } });
             }
-            
+
             if (InstantiatePrefabs && eventData.SpatialObject.Quads.Count > 0)
             {
                 var prefab = Instantiate(InstantiatedPrefab);
@@ -130,13 +132,22 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
                     prefab.transform.SetParent(InstantiatedParent);
                 }
                 instantiatedPrefabs.Add(prefab);
+
+                var col = eventData.SpatialObject.Quads[0].Extents.x * eventData.SpatialObject.Quads[0].Extents.y > 2 ? Color.green : Color.red;
+                foreach (var renderer in prefab.GetComponentsInChildren<Renderer>())
+                {
+                    col.a = 0.5f;
+                    renderer.material.color = col;
+                }
             }
             else
             {
                 foreach (var quad in eventData.SpatialObject.Quads)
                 {
                     //if (quad.Extents.x*quad.Extents.y > 1)
-                        quad.GameObject.GetComponent<Renderer>().material.color = Color.Lerp(Color.green, Color.red, (quad.Extents.x*quad.Extents.y)/10);
+                    var col = quad.Extents.x * quad.Extents.y > 2 ? Color.green : Color.red;
+                    col.a = 0.5f;
+                    quad.GameObject.GetComponent<Renderer>().material.color = col;
                     //else
                     //    quad.GameObject.GetComponent<Renderer>().material.color = ColorForSurfaceType(eventData.SpatialObject.SurfaceType);
                 }
@@ -148,7 +159,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
         public void OnObservationUpdated(MixedRealitySpatialAwarenessEventData<SpatialAwarenessSceneObject> eventData)
         {
             UpdateData(eventData.Id);
-            
+
             if (observedSceneObjects.TryGetValue(eventData.SpatialObject.SurfaceType, out Dictionary<int, SpatialAwarenessSceneObject> sceneObjectDict))
             {
                 observedSceneObjects[eventData.SpatialObject.SurfaceType][eventData.Id] = eventData.SpatialObject;
@@ -374,6 +385,12 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
             ClearAndUpdateObserver();
         }
 
+        public void ToggleGenerateObjects()
+        {
+            InstantiatePrefabs = !InstantiatePrefabs;
+            ClearAndUpdateObserver();
+        }
+
         #endregion UI Functions
 
         #endregion Public Functions
@@ -397,6 +414,8 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
             worldToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.World);
             completelyInferred.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Inferred);
             backgroundToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Background);
+
+            instantiateToggle.IsToggled = InstantiatePrefabs;
         }
 
         /// <summary>

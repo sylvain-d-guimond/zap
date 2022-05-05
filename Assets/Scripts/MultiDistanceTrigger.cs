@@ -102,7 +102,7 @@ public class MultiDistanceTrigger : MonoBehaviour, ICondition
 
             if (triggered)
             {
-                Debug.Log($"Distance trigger {gameObject.name} called: {DebugText}");
+                //Debug.Log($"Distance trigger {gameObject.name} called: {DebugText}");
                 OnTrigger.Invoke();
                 Met = true;
             }

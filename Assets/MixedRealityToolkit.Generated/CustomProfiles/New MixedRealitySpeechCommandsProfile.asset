@@ -142,3 +142,45 @@ MonoBehaviour:
       id: 0
       description: None
       axisConstraint: 0
+  - localizationKey: 
+    keyword: Place portal
+    keyCode: 295
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Start portal
+    keyCode: 0
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Show portal debug
+    keyCode: 0
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Hide portal debug
+    keyCode: 0
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Spawn portal
+    keyCode: 0
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Spawn enemy
+    keyCode: 0
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0

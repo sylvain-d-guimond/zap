@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 4659127810628768424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 4659127810734024468}
   - {fileID: 4659127811267885607}
@@ -127,7 +127,7 @@ MeshCollider:
   m_GameObject: {fileID: 4659127810734024469}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -223,7 +223,7 @@ MeshCollider:
   m_GameObject: {fileID: 4659127810777660341}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -319,7 +319,7 @@ MeshCollider:
   m_GameObject: {fileID: 4659127810841463192}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -415,7 +415,7 @@ MeshCollider:
   m_GameObject: {fileID: 4659127811100518435}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -511,7 +511,7 @@ MeshCollider:
   m_GameObject: {fileID: 4659127811267885604}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -702,7 +702,7 @@ MeshCollider:
   m_GameObject: {fileID: 4659127811588959428}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -798,7 +798,7 @@ MeshCollider:
   m_GameObject: {fileID: 4659127811799076060}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -813,9 +813,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4659127812461957554}
   - component: {fileID: 4659127812461957577}
-  - component: {fileID: 4659127812461957582}
-  - component: {fileID: 4659127812461957583}
-  - component: {fileID: 4659127812461957580}
   - component: {fileID: 4659127812461957581}
   m_Layer: 0
   m_Name: Portal
@@ -861,110 +858,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4659127812461957582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4659127812461957555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 248664dc0e60dca4fb35d70cd0c5695b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drawBoundsGizmo: 0
-  drawLocalBoundsGizmo: 0
---- !u!114 &4659127812461957583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4659127812461957555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b55691ad5b034fe6966763a6e23818d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trackedTargetType: 6
-  trackedHandness: 2
-  trackedHandJoint: 2
-  transformOverride: {fileID: 0}
-  additionalOffset: {x: 0, y: 0, z: 0}
-  additionalRotation: {x: 0, y: 0, z: 0}
-  updateSolvers: 1
---- !u!114 &4659127812461957580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4659127812461957555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 956af6ee031a2eb47b9c0ab5dcd50fd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  updateLinkedTransform: 0
-  moveLerpTime: 0.1
-  rotateLerpTime: 0.1
-  scaleLerpTime: 0
-  maintainScaleOnInitialization: 1
-  smoothing: 1
-  lifetime: 0
-  safeZone: 4
-  safeZoneBuffer: 0.15
-  updateWhenOppositeHandNear: 0
-  hideHandCursorsOnActivate: 1
-  rotationBehavior: 0
-  offsetBehavior: 1
-  forwardOffset: 0
-  safeZoneAngleOffset: 0
-  onHandActivate:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4659127812461957581}
-        m_TargetAssemblyTypeName: AnimationBoolTrigger, Assembly-CSharp
-        m_MethodName: set_Value
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  onHandDeactivate:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4659127812461957581}
-        m_TargetAssemblyTypeName: AnimationBoolTrigger, Assembly-CSharp
-        m_MethodName: set_Value
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onFirstHandDetected:
-    m_PersistentCalls:
-      m_Calls: []
-  onLastHandLost:
-    m_PersistentCalls:
-      m_Calls: []
-  facingCameraTrackingThreshold: 80
-  requireFlatHand: 0
-  flatHandThreshold: 35.8
-  followHandUntilFacingCamera: 0
-  followHandCameraFacingThresholdAngle: 60
-  useGazeActivation: 0
-  eyeGazeProximityThreshold: 0.01
-  headGazeProximityThreshold: 0.04
 --- !u!114 &4659127812461957581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -978,7 +871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Parameter: open
-  Animator: {fileID: 0}
+  Animator: {fileID: 4659127812461957577}
 --- !u!1 &4659127812606210588
 GameObject:
   m_ObjectHideFlags: 0
