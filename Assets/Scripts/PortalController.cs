@@ -194,10 +194,10 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
         /// <returns>A dictionary with the scene objects of the requested type being the values and their ids being the keys.</returns>
         public IReadOnlyDictionary<int, SpatialAwarenessSceneObject> GetSceneObjectsOfType(SpatialAwarenessSurfaceTypes type)
         {
-            if (!observer.SurfaceTypes.IsMaskSet(type))
-            {
-                Debug.LogErrorFormat("The Scene Objects of type {0} are not being observed. You should add {0} to the SurfaceTypes property of the observer in advance.", type);
-            }
+            //if (!observer.SurfaceTypes.IsMaskSet(type))
+            //{
+            //    Debug.LogErrorFormat("The Scene Objects of type {0} are not being observed. You should add {0} to the SurfaceTypes property of the observer in advance.", type);
+            //}
 
             if (observedSceneObjects.TryGetValue(type, out Dictionary<int, SpatialAwarenessSceneObject> sceneObjects))
             {
