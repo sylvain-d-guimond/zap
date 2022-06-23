@@ -109,4 +109,9 @@ public class MultiDistanceTrigger : MonoBehaviour, ICondition
             else { Met = false; }
         }
     }
+
+    public void TriggerDirectly()
+    {
+        OnTrigger.Invoke();
+    }
 }
