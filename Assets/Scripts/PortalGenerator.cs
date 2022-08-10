@@ -8,6 +8,8 @@ using Microsoft.MixedReality.Toolkit.UI;
 using Microsoft.MixedReality.Toolkit;
 using System.Linq;
 using System.Linq.Expressions;
+using UnityEngine.Events;
+using System;
 
 public class PortalGenerator : DemoSpatialMeshHandler, IMixedRealitySpatialAwarenessObservationHandler<SpatialAwarenessSceneObject>
 {
@@ -20,6 +22,8 @@ public class PortalGenerator : DemoSpatialMeshHandler, IMixedRealitySpatialAware
 
     public bool DebugMode;
     public Vector3 DebugOffset;
+
+    public ShowScanRoomEvent ScanRoom;
 
     private IMixedRealitySceneUnderstandingObserver observer;
     private List<AnimationBoolTrigger> instantiatedPrefabs = new List<AnimationBoolTrigger>();
@@ -74,7 +78,7 @@ public class PortalGenerator : DemoSpatialMeshHandler, IMixedRealitySpatialAware
             Debug.Log($"{spots.Count()} compatible objects");
             if (spots.Count() > 0)
             {
-                var spot = spots.ToArray()[Random.Range(0, spots.Count())];
+                var spot = spots.ToArray()[UnityEngine.Random.Range(0, spots.Count())];
                 var go = Instantiate(PortalPrefab, Content);
                 go.transform.SetPositionAndRotation(spot.Position + Offset, spot.Rotation);
                 current = go.GetComponent<AnimationBoolTrigger>();
@@ -139,6 +143,8 @@ public class PortalGenerator : DemoSpatialMeshHandler, IMixedRealitySpatialAware
             observedSceneObjects.Add(eventData.SpatialObject.SurfaceType, new Dictionary<int, SpatialAwarenessSceneObject> { { eventData.Id, eventData.SpatialObject } });
         }
 
+        ScanRoom.Invoke(observedSceneObjects[SpatialAwarenessSurfaceTypes.Wall].Values.
+                Where(x => { return x.Quads[0].Extents.x * x.Quads[0].Extents.y > 2f; }).Count() < 1);
     }
 
     public void OnObservationUpdated(MixedRealitySpatialAwarenessEventData<SpatialAwarenessSceneObject> eventData)
@@ -163,8 +169,12 @@ public class PortalGenerator : DemoSpatialMeshHandler, IMixedRealitySpatialAware
         {
             sceneObjectDict?.Remove(eventData.Id);
         }
+
+        ScanRoom.Invoke(observedSceneObjects[SpatialAwarenessSurfaceTypes.Wall].Values.
+                Where(x => { return x.Quads[0].Extents.x * x.Quads[0].Extents.y > 2f; }).Count() < 1);
     }
 
     #endregion IMixedRealitySpatialAwarenessObservationHandler Implementations
 
 }
+[Serializable] public class ShowScanRoomEvent : UnityEvent<bool> { }

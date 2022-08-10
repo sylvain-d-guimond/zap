@@ -1,3 +1,4 @@
+using Microsoft.MixedReality.Toolkit;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,5 +21,13 @@ public class Game : MonoBehaviour
     {
         var enemy = Instantiate(EnemyPrefab, Room.Instance.transform);
         enemy.transform.position = CurrentPortal.transform.position;
+    }
+
+    private void Update()
+    {
+        //if (!MixedRealityToolkit.Instance.enabled)
+        //{
+        //    MixedRealityToolkit.Instance.enabled = true;
+        //}
     }
 }
