@@ -39,9 +39,9 @@ public class FingerCharge : MonoBehaviour
                 _load = 1f;
                 charge = 1f;
                 _charging = false;
-                Debug.Log($"Load from {gameObject.name} triggering {OnLoaded.GetPersistentEventCount()} events");
+                if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log($"Load from {gameObject.name} triggering {OnLoaded.GetPersistentEventCount()} events");
                 OnLoaded.Invoke();
-                Debug.Log("Loaded");
+                if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log("Loaded");
             }
 
             Effect.SetFloat("Load", _load);

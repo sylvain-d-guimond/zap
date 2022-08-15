@@ -47,7 +47,7 @@ public class MultiConditionTrigger : MonoBehaviour, ICondition
     }
 
     public void Check(bool b) {
-        Debug.Log($"Check {Conditions.Count} conditions");
+        if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log($"Check {Conditions.Count} conditions");
         if (!Conditions.Any(condition => !condition.Met))
         {
             OnConditionsMet.Invoke();

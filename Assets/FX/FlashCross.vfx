@@ -77,10 +77,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: 2488
+    x: 2489
     y: -413
-    width: 2232
-    height: 2107
+    width: 2230
+    height: 2106
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: Flash
+  m_Name: FlashCross
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 0}
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_ImportDependencies: []
   m_GraphVersion: 6
   m_ResourceVersion: 1
-  m_saved: 1
+  m_saved: 0
   m_SubgraphDependencies: []
   m_CategoryPath: 
 --- !u!2058629511 &8926484042661614527
@@ -155,7 +155,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Flash
+  m_Name: FlashCross
   m_Graph: {fileID: 114350483966674976}
   m_Infos:
     m_RendererSettings:
@@ -1010,7 +1010,7 @@ MonoBehaviour:
   m_InputSlots:
   - {fileID: 8926484042661614950}
   m_OutputSlots: []
-  m_Disabled: 0
+  m_Disabled: 1
   attribute: color
   Composition: 1
   AlphaComposition: 0
@@ -1125,7 +1125,7 @@ MonoBehaviour:
   m_Disabled: 0
   attribute: color
   Composition: 1
-  AlphaComposition: 1
+  AlphaComposition: 0
   SampleMode: 0
   Mode: 1
   ColorMode: 3
@@ -2350,7 +2350,7 @@ MonoBehaviour:
   m_InputSlots:
   - {fileID: 8926484042661615162}
   m_OutputSlots: []
-  m_Disabled: 0
+  m_Disabled: 1
   attribute: color
   Composition: 0
   Source: 0
@@ -2515,7 +2515,7 @@ MonoBehaviour:
   m_OutputSlots: []
   m_Disabled: 0
   attribute: color
-  Composition: 2
+  Composition: 1
   AlphaComposition: 0
   SampleMode: 0
   Mode: 1
@@ -3904,7 +3904,7 @@ MonoBehaviour:
   m_InputSlots:
   - {fileID: 8926484042661615237}
   m_OutputSlots: []
-  m_Disabled: 0
+  m_Disabled: 1
   attribute: color
   Composition: 0
   Source: 0
@@ -4069,7 +4069,7 @@ MonoBehaviour:
   m_OutputSlots: []
   m_Disabled: 0
   attribute: color
-  Composition: 2
+  Composition: 1
   AlphaComposition: 0
   SampleMode: 0
   Mode: 1

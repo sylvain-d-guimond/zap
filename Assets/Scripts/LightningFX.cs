@@ -20,15 +20,17 @@ public class LightningFX : MonoBehaviour
         PointB = t;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (PointA == null || PointB == null)
         {
-            Effect.enabled = false;
+            if (Effect != null)
+                Effect.enabled = false;
         }
         else
         {
-            Effect.enabled = true;
+            if (Effect != null)
+                Effect.enabled = true;
             var fingerSpan = PointB.position - PointA.position;
             var midpoint = PointA.position + (fingerSpan) / 2;
             transform.position = midpoint;

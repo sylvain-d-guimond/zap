@@ -29,14 +29,14 @@ public class EyeColor : MonoBehaviour
 
     public void In()
     {
-        Debug.Log("Color in");
+        if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log("Color in");
         _in = true; _out = false;
         _startTime = Time.time;
     }
 
     public void Out()
     {
-        Debug.Log("Color out");
+        if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log("Color out");
         _out = true; _in = false;
         _startTime = Time.time;
     }

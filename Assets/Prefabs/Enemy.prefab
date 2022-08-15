@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7493802064368751840}
   - component: {fileID: 7493802064368751842}
   - component: {fileID: 7493802064368751841}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy1Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,8 @@ GameObject:
   - component: {fileID: 919132147698138600}
   - component: {fileID: 105246988}
   - component: {fileID: 105246992}
-  m_Layer: 0
+  - component: {fileID: 1458264723001365466}
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,6 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 1
+  Defense: 0
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls:
@@ -220,6 +222,21 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: SetColorRamp, Assembly-CSharp
         m_MethodName: Call
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7493802064368751842}
+        m_TargetAssemblyTypeName: UnityEngine.VFX.VisualEffect, UnityEngine
+        m_MethodName: Stop
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -241,7 +258,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.010019046
+  m_Radius: 0.015
   m_Center: {x: 0, y: -9.313226e-10, z: 0}
 --- !u!114 &105246992
 MonoBehaviour:
@@ -257,4 +274,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Color1: {r: 0, g: 0.812718, b: 1, a: 1}
   Color2: {r: 1, g: 0.16787459, b: 0, a: 1}
-  Renderer: {fileID: 8088114082444155258}
+  Renderers:
+  - {fileID: 8088114082444155258}
+--- !u!54 &1458264723001365466
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7727680633950222511}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

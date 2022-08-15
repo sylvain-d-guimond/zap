@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.VFX;
 
 public class Enemy : BaseCharacter
@@ -36,38 +37,44 @@ public class Enemy : BaseCharacter
     protected override void Update()
     {
         base.Update();
-        //Moving behavior
-        if (_moving)
+        if (_isAlive)
         {
-            if (Time.time > _start + _moveDuration)
+            //Moving behavior
+            if (_moving)
             {
-                _start = Time.time;
-                _moving = false;
+                if (Time.time > _start + _moveDuration)
+                {
+                    _start = Time.time;
+                    _moving = false;
+                }
+
+                var desiredPosition = (transform.position - Game.Instance.CurrentPlayer.transform.position).normalized * _desiredDistance +
+                    Game.Instance.CurrentPlayer.transform.position;
+
+                transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime / _smoothing);
             }
-
-            var desiredPosition = (transform.position - Game.Instance.CurrentPlayer.transform.position).normalized * _desiredDistance + 
-                Game.Instance.CurrentPlayer.transform.position;
-
-            transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime / _smoothing);
-        }
-        //Attacking behavior
-        else
-        {
-            if (Time.time > _start + _chargeDuration)
+            //Attacking behavior
+            else
             {
-                _start = Time.time;
-                _moving = true;
-                Fire();
-            }
+                if (Time.time > _start + _chargeDuration)
+                {
+                    _start = Time.time;
+                    _moving = true;
+                    GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    Fire();
+                }
 
-            Charge.SetFloat("Charge", (Time.time - _start) / _chargeDuration);
+                Charge.SetFloat("Charge", (Time.time - _start) / _chargeDuration);
+            }
         }
     }
 
     protected override void Die()
     {
         base.Die();
-
-        Destroy(this.gameObject);
+        var rigidBody = GetComponent<Rigidbody>();
+        rigidBody.useGravity = true;
+        rigidBody.isKinematic = false;
+        //Destroy(this.gameObject);
     }
 }

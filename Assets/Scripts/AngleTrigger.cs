@@ -28,7 +28,7 @@ public class AngleTrigger : MonoBehaviour, ICondition
             {
                 _met = value;
                 OnConditionChanged.Invoke(value);
-                Debug.Log($"Condition {gameObject.name} Finger {Finger} {Value}: {DebugMessage} is {value}");
+                if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log($"Condition {gameObject.name} Finger {Finger} {Value}: {DebugMessage} is {value}");
             }
         }
     }
@@ -39,13 +39,13 @@ public class AngleTrigger : MonoBehaviour, ICondition
 
     private void Start()
     {
-        Debug.Log($"Angle trigger on for {Operator} {Value}");
+        if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log($"Angle trigger on for {Operator} {Value}");
         _handMgr = HandManager.Instance;
     }
 
     public void SetActive(bool value)
     {
-        Debug.Log($"{gameObject.name} sets angle trigger for {Operator} {Value} active: {value}");
+        if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log($"{gameObject.name} sets angle trigger for {Operator} {Value} active: {value}");
         Active = value;
     }
 

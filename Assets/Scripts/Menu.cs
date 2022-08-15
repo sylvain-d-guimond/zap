@@ -38,7 +38,7 @@ public class Menu : MonoBehaviour
 
     public void Show()
     {
-        Debug.Log($"Show {gameObject.name}");
+        if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log($"Show {gameObject.name}");
         OnShow.Invoke();
     }
 
@@ -55,13 +55,13 @@ public class Menu : MonoBehaviour
 
     public void Hide()
     {
-        Debug.Log($"Hide {gameObject.name}");
+        if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log($"Hide {gameObject.name}");
         OnHide.Invoke();
     }
 
     public void ShowFinished()
     {
-        Debug.Log($"Show {gameObject.name} finished");
+        if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log($"Show {gameObject.name} finished");
         OnShowFinished.Invoke();
     }
 

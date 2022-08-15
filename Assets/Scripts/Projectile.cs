@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour
         var enemy = collision.gameObject.GetComponent<Enemy>();
         if (enemy == null)
         {
-            Debug.Log($"Collision with {this.name} and {collision.gameObject.name}");
+            if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log($"Collision with {this.name} and {collision.gameObject.name}");
             Sound.time = SoundOffset;
             Sound.Play();
             Explosion.Play();

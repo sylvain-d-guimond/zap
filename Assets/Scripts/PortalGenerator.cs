@@ -20,7 +20,7 @@ public class PortalGenerator : DemoSpatialMeshHandler, IMixedRealitySpatialAware
 
     public Vector3 Offset;
 
-    public bool DebugMode;
+    public bool PortalDebugMode;
     public Vector3 DebugOffset;
 
     public ShowScanRoomEvent ScanRoom;
@@ -40,7 +40,6 @@ public class PortalGenerator : DemoSpatialMeshHandler, IMixedRealitySpatialAware
         }
 
         //StartCoroutine(CoMainLoop());
-        Debug.Log("Portal generator initialized");
     }
 
     private IEnumerator CoMainLoop()
@@ -69,13 +68,19 @@ public class PortalGenerator : DemoSpatialMeshHandler, IMixedRealitySpatialAware
             current = null;
         }
 
-        Debug.Log($"{observedSceneObjects.Count} spatial awareness objects in scene");
+        if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log($"{observedSceneObjects.Count} spatial awareness objects in scene");
         if (observedSceneObjects.Count > 0)
         {
             var spots = observedSceneObjects[SpatialAwarenessSurfaceTypes.Wall].Values.
-                Where(x => { return x.Quads[0].Extents.x * x.Quads[0].Extents.y > 2f; });
+                Where(x =>
+                {
+                    var bounds = GeometryUtility.CalculateBounds(x.Meshes[0].Vertices, transform.localToWorldMatrix);
+                    return bounds.size.x * bounds.size.y > 1f ||
+                            bounds.size.x * bounds.size.z > 1f ||
+                            bounds.size.z * bounds.size.y > 1f;
+                });
 
-            Debug.Log($"{spots.Count()} compatible objects");
+            if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log($"{spots.Count()} compatible objects");
             if (spots.Count() > 0)
             {
                 var spot = spots.ToArray()[UnityEngine.Random.Range(0, spots.Count())];
@@ -86,33 +91,33 @@ public class PortalGenerator : DemoSpatialMeshHandler, IMixedRealitySpatialAware
                 Game.Instance.CurrentPortal = go;
                 Debug.Log($"Spawing portal at {spot.Position} from {spots.Count()} spots at {Time.time}s");
 
-                //foreach (var quad in spot.Quads)
-                //{
-                //    //if (quad.Extents.x*quad.Extents.y > 1)
-                //    var col = quad.Extents.x * quad.Extents.y > 2 ? Color.green : Color.red;
-                //    col.a = 0.5f;
-                //    quad.GameObject.GetComponent<Renderer>().material.color = col;
+                foreach (var quad in spot.Quads)
+                {
+                    //if (quad.Extents.x*quad.Extents.y > 1)
+                    var col = quad.Extents.x * quad.Extents.y > 2 ? Color.green : Color.red;
+                    col.a = 0.5f;
+                    quad.GameObject.GetComponent<Renderer>().material.color = col;
 
-                //    //var indicator = Instantiate(IndicatorPrefab, go.transform);
-                //    //indicator.transform.SetPositionAndRotation(spot.Position, spot.Rotation);
-                //    //indicator.transform.localScale = new Vector3(spot.Quads[0].Extents.x, spot.Quads[0].Extents.y, .1f);
-                //}
+                    //var indicator = Instantiate(IndicatorPrefab, go.transform);
+                    //indicator.transform.SetPositionAndRotation(spot.Position, spot.Rotation);
+                    //indicator.transform.localScale = new Vector3(spot.Quads[0].Extents.x, spot.Quads[0].Extents.y, .1f);
+                }
             }
         }
-        else if (DebugMode)
+        else if (PortalDebugMode)
         {
             var go = Instantiate(PortalPrefab, Content);
             go.transform.position = DebugOffset;
             current = go.GetComponent<AnimationBoolTrigger>();
             current.Value = true;
             Game.Instance.CurrentPortal = go;
-            Debug.Log($"Spawing debug portal at {DebugOffset} at time {Time.time}s");
+            if (DebugMode.instance.DebugLevel <= DebugLevels.Info) Debug.Log($"Spawing debug portal at {DebugOffset} at time {Time.time}s");
         }
     }
 
     protected override void OnEnable()
     {
-        Debug.Log($"Registering event handlers");
+        if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log($"Registering event handlers");
         RegisterEventHandlers<IMixedRealitySpatialAwarenessObservationHandler<SpatialAwarenessSceneObject>, SpatialAwarenessSceneObject>();
     }
 
@@ -131,7 +136,7 @@ public class PortalGenerator : DemoSpatialMeshHandler, IMixedRealitySpatialAware
 
     public void OnObservationAdded(MixedRealitySpatialAwarenessEventData<SpatialAwarenessSceneObject> eventData)
     {
-        Debug.Log("Observation added");
+        if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log("Observation added");
         AddToData(eventData.Id);
 
         if (observedSceneObjects.TryGetValue(eventData.SpatialObject.SurfaceType, out Dictionary<int, SpatialAwarenessSceneObject> sceneObjectDict))
@@ -143,8 +148,8 @@ public class PortalGenerator : DemoSpatialMeshHandler, IMixedRealitySpatialAware
             observedSceneObjects.Add(eventData.SpatialObject.SurfaceType, new Dictionary<int, SpatialAwarenessSceneObject> { { eventData.Id, eventData.SpatialObject } });
         }
 
-        ScanRoom.Invoke(observedSceneObjects[SpatialAwarenessSurfaceTypes.Wall].Values.
-                Where(x => { return x.Quads[0].Extents.x * x.Quads[0].Extents.y > 2f; }).Count() < 1);
+        //ScanRoom.Invoke(observedSceneObjects[SpatialAwarenessSurfaceTypes.Wall].Values.
+                //Where(x => { return x.Quads[0].Extents.x * x.Quads[0].Extents.y > 2f; }).Count() < 1);
     }
 
     public void OnObservationUpdated(MixedRealitySpatialAwarenessEventData<SpatialAwarenessSceneObject> eventData)
@@ -170,8 +175,8 @@ public class PortalGenerator : DemoSpatialMeshHandler, IMixedRealitySpatialAware
             sceneObjectDict?.Remove(eventData.Id);
         }
 
-        ScanRoom.Invoke(observedSceneObjects[SpatialAwarenessSurfaceTypes.Wall].Values.
-                Where(x => { return x.Quads[0].Extents.x * x.Quads[0].Extents.y > 2f; }).Count() < 1);
+        //ScanRoom.Invoke(observedSceneObjects[SpatialAwarenessSurfaceTypes.Wall].Values.
+        //        Where(x => { return x.Quads[0].Extents.x * x.Quads[0].Extents.y > 2f; }).Count() < 1);
     }
 
     #endregion IMixedRealitySpatialAwarenessObservationHandler Implementations

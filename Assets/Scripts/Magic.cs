@@ -39,6 +39,11 @@ public class Magic : MonoBehaviour
     {
         this.Stage = MagicStage.Thrown;
     }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
 }
 
 public enum MagicStage

@@ -62,11 +62,11 @@ public class MultiDistanceTrigger : MonoBehaviour, ICondition
                         if (!Invert && (Targets[i].position - Targets[j].position).magnitude > MinInitDistance)
                         {
                             inited = true;
-                            Debug.Log($"Distance trigger initialized: {gameObject.name}");
+                            if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log($"Distance trigger initialized: {gameObject.name}");
                         } else if (Invert && (Targets[i].position - Targets[j].position).magnitude < MinInitDistance)
                         {
                             inited = true;
-                            Debug.Log($"Distance trigger initialized: {gameObject.name}");
+                            if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log($"Distance trigger initialized: {gameObject.name}");
                         }
                     }
                 }
@@ -102,7 +102,7 @@ public class MultiDistanceTrigger : MonoBehaviour, ICondition
 
             if (triggered)
             {
-                //Debug.Log($"Distance trigger {gameObject.name} called: {DebugText}");
+                if (DebugMode.instance.DebugLevel <= DebugLevels.Debug) Debug.Log($"Distance trigger {gameObject.name} called: {DebugText}");
                 OnTrigger.Invoke();
                 Met = true;
             }
