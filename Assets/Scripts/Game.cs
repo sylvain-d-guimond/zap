@@ -75,8 +75,8 @@ public class Game : MonoBehaviour
         {
             case GameStates.Prestart:
                 Clear();
-                _stateActions.Add(StartCoroutine(CoDelay(1, () => Portals.PlacePortal())));
-                _stateActions.Add(StartCoroutine(CoDelay(2, () => SetState(GameStates.Level1))));
+                _stateActions.Add(StartCoroutine(CoDelay(5, () => Portals.PlacePortal())));
+                _stateActions.Add(StartCoroutine(CoDelay(10, () => SetState(GameStates.Level1))));
                 break;
             case GameStates.Level1:
                 Clear();
@@ -87,12 +87,12 @@ public class Game : MonoBehaviour
                 _stateActions.Add(StartCoroutine(CoDelay(20, () => SpawnEnemy(Enemy1Prefab))));
                 _stateActions.Add(StartCoroutine(CoDelay(25, () => Portals.PlacePortal())));
                 _stateActions.Add(StartCoroutine(CoDelay(30, () => SpawnEnemy(Enemy1Prefab))));
-                _stateActions.Add(StartCoroutine(CoDelay(32, () => Portals.PlacePortal())));
-                _stateActions.Add(StartCoroutine(CoDelay(34, () => SpawnEnemy(Enemy1Prefab))));
-                _stateActions.Add(StartCoroutine(CoDelay(36, () => Portals.PlacePortal())));
-                _stateActions.Add(StartCoroutine(CoDelay(38, () => SpawnEnemy(Enemy1Prefab))));
-                _stateActions.Add(StartCoroutine(CoDelay(40, () => Portals.PlacePortal())));
-                _stateActions.Add(StartCoroutine(CoDelay(42, () => SpawnEnemy(Enemy2Prefab, 
+                _stateActions.Add(StartCoroutine(CoDelay(35, () => Portals.PlacePortal())));
+                _stateActions.Add(StartCoroutine(CoDelay(40, () => SpawnEnemy(Enemy1Prefab))));
+                _stateActions.Add(StartCoroutine(CoDelay(45, () => Portals.PlacePortal())));
+                _stateActions.Add(StartCoroutine(CoDelay(50, () => SpawnEnemy(Enemy1Prefab))));
+                _stateActions.Add(StartCoroutine(CoDelay(55, () => Portals.PlacePortal())));
+                _stateActions.Add(StartCoroutine(CoDelay(60, () => SpawnEnemy(Enemy2Prefab, 
                     () => _stateActions.Add(StartCoroutine(CoDelay(15, ()=> SetState(GameStates.Level2))))))));
                 break;
             case GameStates.Level2:
